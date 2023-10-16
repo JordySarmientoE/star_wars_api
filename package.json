@@ -3,7 +3,8 @@
     "test": "npx jest",
     "deploy": "serverless deploy --verbose",
     "remove": "serverless remove",
-    "dev": "serverless offline"
+    "dev": "serverless offline",
+    "openapi": "serverless openapi generate"
   },
   "devDependencies": {
     "serverless-offline": "^8.8.0"

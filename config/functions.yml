@@ -1,0 +1,39 @@
+getCharacters:
+  handler: src/characters/router.getAll
+  events:
+    - http:
+        method: GET
+        path: "/characters"
+        cors: true
+
+createCharacters:
+  handler: src/characters/router.create
+  events:
+    - http:
+        method: POST
+        path: "/characters"
+        cors: true
+
+getByIdCharacters:
+  handler: src/characters/router.getById
+  events:
+    - http:
+        method: GET
+        path: "/characters/{id}"
+        cors: true
+
+updateCharacters:
+  handler: src/characters/router.update
+  events:
+    - http:
+        method: PUT
+        path: "/characters/{id}"
+        cors: true
+
+deleteCharacters:
+  handler: src/characters/router.deleteOne
+  events:
+    - http:
+        method: DELETE
+        path: "/characters/{id}"
+        cors: true

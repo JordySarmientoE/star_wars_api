@@ -24,8 +24,8 @@ Run test
 -> npm run test
 
 3. You can prove apis on my deploy ->
-    GET - https://iey2gkv75j.execute-api.us-east-2.amazonaws.com/characters
-    POST - https://iey2gkv75j.execute-api.us-east-2.amazonaws.com/characters
-    GET - https://iey2gkv75j.execute-api.us-east-2.amazonaws.com/characters/{id}
-    PUT - https://iey2gkv75j.execute-api.us-east-2.amazonaws.com/characters/{id}
-    DELETE - https://iey2gkv75j.execute-api.us-east-2.amazonaws.com/characters/{id}
+    GET - https://qwnbh4fs3d.execute-api.us-east-2.amazonaws.com/characters
+    POST - https://qwnbh4fs3d.execute-api.us-east-2.amazonaws.com/characters
+    GET - https://qwnbh4fs3d.execute-api.us-east-2.amazonaws.com/characters/{id}
+    PUT - https://qwnbh4fs3d.execute-api.us-east-2.amazonaws.com/characters/{id}
+    DELETE - https://qwnbh4fs3d.execute-api.us-east-2.amazonaws.com/characters/{id}

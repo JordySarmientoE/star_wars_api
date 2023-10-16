@@ -8,6 +8,7 @@ provider:
   name: aws
   runtime: nodejs16.x
   region: us-east-2
+  stage: dev
   environment:
     ACCOUNT_ID: 800713300422
     DYNAMODB_TABLE: CharactersTable
@@ -35,41 +36,7 @@ provider:
 plugins:
   - serverless-offline
 
-functions:
-  getCharacters:
-    handler: src/characters/router.getAll
-    events:
-      - httpApi:
-          method: GET
-          path: "/characters"
-
-  createCharacters:
-    handler: src/characters/router.create
-    events:
-      - httpApi:
-          method: POST
-          path: "/characters"
-
-  getByIdCharacters:
-    handler: src/characters/router.getById
-    events:
-      - httpApi:
-          method: GET
-          path: "/characters/{id}"
-
-  updateCharacters:
-    handler: src/characters/router.update
-    events:
-      - httpApi:
-          method: PUT
-          path: "/characters/{id}"
-
-  deleteCharacters:
-    handler: src/characters/router.deleteOne
-    events:
-      - httpApi:
-          method: DELETE
-          path: "/characters/{id}"
+functions: ${file(config/functions.yml)}
 
 resources:
   Resources:
