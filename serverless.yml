@@ -1,0 +1,65 @@
+service: star-wars-api
+app: star-wars-api
+org: jordysarmiento
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: us-east-2
+  environment:
+    ACCOUNT_ID: 800713300422
+    DYNAMODB_TABLE: CharactersTable
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+          - dynamodb:Query
+          - dynamodb:Scan
+          - dynamodb:GetItem
+          - dynamodb:PutItem
+          - dynamodb:UpdateItem
+          - dynamodb:DeleteItem
+          Resource:
+          - arn:aws:dynamodb:${opt:region, self:provider.region}:${self:provider.environment.ACCOUNT_ID}:table/${self:provider.environment.DYNAMODB_TABLE}
+
+plugins:
+  - serverless-offline
+
+functions:
+  getCharacters:
+    handler: src/characters/charactersRouter.getAll
+    events:
+      - httpApi:
+          method: GET
+          path: "/characters"
+
+  createCharacters:
+    handler: src/characters/charactersRouter.create
+    events:
+      - httpApi:
+          method: POST
+          path: "/characters"
+
+  getByIdCharacters:
+    handler: src/characters/charactersRouter.getById
+    events:
+      - httpApi:
+          method: GET
+          path: "/characters/{id}"
+
+  updateCharacters:
+    handler: src/characters/charactersRouter.update
+    events:
+      - httpApi:
+          method: PUT
+          path: "/characters/{id}"
+
+  deleteCharacters:
+    handler: src/characters/charactersRouter.deleteOne
+    events:
+      - httpApi:
+          method: DELETE
+          path: "/characters/{id}"
