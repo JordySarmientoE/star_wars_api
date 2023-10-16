@@ -100,6 +100,21 @@ const responseDelete = (table) => {
   };
 };
 
+const responseValidation = (details) => {
+  return {
+    statusCode: 400,
+    body: JSON.stringify(
+      {
+        message: "Has some errors on payload",
+        status: 400,
+        details
+      },
+      null,
+      2
+    ),
+  };
+};
+
 module.exports = {
   responseGetAll,
   responseError,
@@ -108,4 +123,5 @@ module.exports = {
   responseGetById,
   responseUpdate,
   responseDelete,
+  responseValidation
 };

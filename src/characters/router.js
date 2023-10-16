@@ -1,6 +1,6 @@
 "use strict";
 // Import controller for use methods
-const controller = require("./charactersController");
+const controller = require("./controller");
 const middleware = require("../middlewares/validation");
 
 // API GET ALL CHARACTER
@@ -35,7 +35,7 @@ const deleteOne = async (event) => {
 
 module.exports = {
   getAll,
-  // Validate payload from a schema and use middleware to parse body
+  // Use middleware to parse body
   create: middleware(create),
   getById,
   // Use middleware to parse body

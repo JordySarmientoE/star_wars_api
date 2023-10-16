@@ -11,6 +11,7 @@ provider:
   environment:
     ACCOUNT_ID: 800713300422
     DYNAMODB_TABLE: CharactersTable
+    REGION: us-east-2
   iam:
     role:
       statements:
@@ -24,42 +25,67 @@ provider:
           - dynamodb:DeleteItem
           Resource:
           - arn:aws:dynamodb:${opt:region, self:provider.region}:${self:provider.environment.ACCOUNT_ID}:table/${self:provider.environment.DYNAMODB_TABLE}
+        - Effect: Allow
+          Action:
+          - dynamodb:Query
+          - dynamodb:Scan
+          Resource:
+          - arn:aws:dynamodb:${opt:region, self:provider.region}:${self:provider.environment.ACCOUNT_ID}:table/${self:provider.environment.DYNAMODB_TABLE}/index/*
 
 plugins:
   - serverless-offline
 
 functions:
   getCharacters:
-    handler: src/characters/charactersRouter.getAll
+    handler: src/characters/router.getAll
     events:
       - httpApi:
           method: GET
           path: "/characters"
 
   createCharacters:
-    handler: src/characters/charactersRouter.create
+    handler: src/characters/router.create
     events:
       - httpApi:
           method: POST
           path: "/characters"
 
   getByIdCharacters:
-    handler: src/characters/charactersRouter.getById
+    handler: src/characters/router.getById
     events:
       - httpApi:
           method: GET
           path: "/characters/{id}"
 
   updateCharacters:
-    handler: src/characters/charactersRouter.update
+    handler: src/characters/router.update
     events:
       - httpApi:
           method: PUT
           path: "/characters/{id}"
 
   deleteCharacters:
-    handler: src/characters/charactersRouter.deleteOne
+    handler: src/characters/router.deleteOne
     events:
       - httpApi:
           method: DELETE
           path: "/characters/{id}"
+
+resources:
+  Resources:
+    TodosDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: id
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}
