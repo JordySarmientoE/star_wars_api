@@ -115,7 +115,7 @@ const update = async (id, payload) => {
     genero,
   } = newPayload;
   // Update dynamodb document
-  const res = await dynamodb.update({
+  await dynamodb.update({
     TableName: TableName.Characters,
     Key: {
       id,

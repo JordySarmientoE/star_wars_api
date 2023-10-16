@@ -67,7 +67,6 @@ class CharactersController {
       await Service.deleteOne(id);
       return Response.responseDelete(Table.Character);
     } catch (error) {
-      console.log(error);
       if (error.statusCode) {
         return error;
       } else {

@@ -19,7 +19,6 @@ class CharactersService {
       const characters = [...charactersDB, ...translatedStarWars];
       return characters;
     } catch (error) {
-      console.log(error);
       throw error;
     }
   }
@@ -74,7 +73,6 @@ class CharactersService {
       // Delete when we know character exists
       await DataAccess.deleteOne(id);
     } catch (error) {
-      console.log(error);
       throw error;
     }
   }

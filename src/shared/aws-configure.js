@@ -17,7 +17,6 @@ const TranslateText = async (text) => {
     const translation = await translate.translateText(params).promise();
     return translation.TranslatedText;
   } catch (error) {
-    console.error('Error', error);
     return text;
   }
 };

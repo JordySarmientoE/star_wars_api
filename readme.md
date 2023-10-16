@@ -10,7 +10,7 @@ Steps to run project
 
 3. Run project locally
 -> Install dev dependencies: npm install --only=dev
--> Run project locally: serverless offline
+-> Run project locally: serverless offline or npm run dev
 
 More
 1. Deploy project
